@@ -1,0 +1,25 @@
+/* Activity records extend the existing YOU red-and-white editorial system. */
+.season-heading{padding-bottom:38px}
+.season-heading>p:not(.club-kicker){max-width:36em;line-height:1.8}
+.season-records{padding-top:28px}
+.season-filters:not([hidden]){display:grid;grid-template-columns:minmax(230px,2fr) minmax(155px,1fr) minmax(145px,1fr) auto;gap:18px;align-items:end;margin:24px 0 36px}
+.season-filters label{display:flex;flex-direction:column;gap:9px;font-size:14px;font-weight:700}
+.season-filters input,.season-filters select,.season-filters button{font:inherit;border:1px solid var(--rule);background:var(--paper);padding:12px;min-height:48px;min-width:0;width:100%;color:var(--ink)}
+.season-filters button{font-weight:700;color:var(--red);padding-inline:22px;cursor:pointer}
+.season-filters button:hover{border-color:var(--red);background:var(--red-soft)}
+.season-filters :focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.season-record{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.6fr);gap:40px;padding:34px 0;border-top:1px solid var(--rule)}
+.season-record[hidden]{display:none}
+.season-photo{display:flex;background:var(--surface);align-items:center;justify-content:center;overflow:hidden;height:270px}
+.season-photo img{height:100%;width:100%;object-fit:contain;transition:transform .2s}
+.season-photo:hover img{transform:scale(1.02)}
+.season-copy{align-self:center;min-width:0}
+.season-copy .news-meta{padding:0;flex-wrap:wrap}
+.season-copy h2{font-size:clamp(25px,2.7vw,38px);line-height:1.3;letter-spacing:-.03em;margin:14px 0}
+.season-copy h2 a:hover{color:var(--red)}
+.season-copy p{font-size:17px;line-height:1.85;color:var(--muted);margin:0 0 12px;max-width:45em}
+.season-notes{border-top:1px solid var(--rule);margin-top:15px;padding-top:25px}
+.season-notes p{font-size:14px;line-height:1.8;max-width:58em;color:var(--muted)}
+.season-empty{padding:40px 0;color:var(--muted)}
+@media(max-width:767px){.season-filters:not([hidden]){grid-template-columns:1fr 1fr;gap:15px}.season-filters label:first-child{grid-column:1/-1}.season-filters button{grid-column:1/-1}.season-record{grid-template-columns:1fr;gap:18px;padding:27px 0}.season-photo{height:290px}.season-copy p{font-size:16px}.season-copy h2{font-size:27px}.season-copy .news-meta{font-size:12px;gap:6px 14px}}
+@media(prefers-reduced-motion:reduce){.season-photo img{transition:none}}
