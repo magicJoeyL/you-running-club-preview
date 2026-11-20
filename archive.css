@@ -183,3 +183,54 @@
  .partner-dot-controls .partner-event{width:100%;text-align:center;padding:4px 0 0}
  .partner-dot-controls .partner-dots button{width:44px;min-width:44px}
 }
+/* Keep the two personal contact purposes together and the three social channels separate. */
+.brand-home .contact-groups{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:32px}
+.brand-home .contact-group{min-width:0}
+.brand-home .contact-group-heading{font-size:16px;line-height:1.4;color:var(--red);margin:0 0 14px;font-weight:800;letter-spacing:.01em}
+.brand-home .contact-personal{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.brand-home .contact-official{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.brand-home .contact-purpose{min-height:48px}
+.brand-home .contact-group .contact-channel h3{font-size:clamp(17px,1.5vw,20px)}
+.brand-home #newcomer-contact{scroll-margin-top:96px}
+.brand-home #newcomer-contact:target{border-top:3px solid var(--red);outline:1px solid var(--red);outline-offset:7px}
+.newcomer-qr-frame{display:block;position:relative;width:100%;aspect-ratio:1;overflow:hidden;background:#fff}
+.brand-home .newcomer-qr-frame img{position:absolute;left:-20.4467%;top:-62.0275%;width:140.8935%;max-width:none;height:auto;aspect-ratio:auto;object-fit:initial}
+.brand-home .first-run-actions{flex:0 0 auto;display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.brand-home .first-run-actions .inline-link{font-size:14px;min-height:44px}
+@media(max-width:1100px){.brand-home .contact-groups{grid-template-columns:1fr;gap:34px}}
+@media(max-width:760px){.brand-home .first-run-actions{margin-top:18px}.brand-home #newcomer-contact{scroll-margin-top:86px}}
+@media(max-width:560px){
+ .brand-home .contact-official,.brand-home .contact-personal{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 16px}
+ .brand-home .contact-purpose{min-height:44px}
+}
+.brand-home .hero-dot-controls:not([hidden]){display:flex;align-items:center;justify-content:flex-end}
+.hero-dots{display:flex;align-items:center;justify-content:center;gap:0}
+.brand-home .hero-dot-controls .hero-dots button{display:grid;place-items:center;width:36px;min-width:36px;min-height:44px;height:44px;padding:0;border:0;background:none}
+.brand-home .hero-dot-controls .hero-dots button span{display:block;width:7px;height:7px;border-radius:50%;background:#a8a1a2}
+.brand-home .hero-dot-controls .hero-dots button[aria-pressed="true"] span{background:var(--red);width:10px;height:10px}
+.brand-home .hero-dot-controls .hero-dots button:hover span{background:var(--red)}
+.brand-home .hero-dot-controls .hero-dots button:hover{background:none}
+@media(max-width:560px){.brand-home .hero-dot-controls .hero-dots button{width:32px;min-width:32px}.brand-home .hero-bottom{gap:7px}}
+/* Keep meaningful photo content visible at its native ratio. */
+.brand-home .hero-reel{overflow-x:hidden;touch-action:pan-y}
+.brand-home .hero-bottom{justify-content:center;min-height:50px}
+.brand-home .hero-dot-controls:not([hidden]){justify-content:center}
+.brand-home .about-running-gallery{grid-template-columns:1fr 1fr;grid-template-rows:1fr;aspect-ratio:1.49}
+.brand-home .about-running-gallery>div:first-child{grid-row:auto}
+.brand-home .about-running-gallery img{object-fit:contain;object-position:center;width:100%;height:100%}
+.brand-home #news .archive-categories .archive-photo{aspect-ratio:1.5;background:transparent}
+.brand-home #news .archive-categories .archive-photo img{width:100%;height:100%;aspect-ratio:auto;object-fit:contain;object-position:center}
+@media(max-width:560px){.brand-home .about-running-gallery{aspect-ratio:1.49}.brand-home .hero-bottom{min-height:48px}}
+@media(max-width:560px){
+ .brand-home .contact-personal{grid-template-columns:1fr;gap:24px}
+ .brand-home .contact-personal .contact-channel{display:grid;grid-template-columns:minmax(0,1fr) 184px;column-gap:12px;align-items:start}
+ .brand-home .contact-personal .contact-channel h3{grid-column:1;grid-row:1;margin-bottom:8px}
+ .brand-home .contact-personal .contact-purpose{grid-column:1;grid-row:2;min-height:0;margin-bottom:8px}
+ .brand-home .contact-personal .contact-qr-link{grid-column:2;grid-row:1/span 4;width:184px;max-width:none;align-self:center;justify-self:end;margin-bottom:0}
+ .brand-home .contact-personal .contact-label{grid-column:1;grid-row:3}
+ .brand-home .contact-personal .contact-channel>a:not(.contact-qr-link){grid-column:1;grid-row:4}
+}
+@media(max-width:359px){
+ .brand-home .contact-personal .contact-channel{display:flex;flex-direction:column;align-items:flex-start}
+ .brand-home .contact-personal .contact-qr-link{align-self:center;margin-block:12px}
+}

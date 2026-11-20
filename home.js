@@ -1,27 +1,61 @@
-const reel = document.querySelector('#hero-reel');
-const slides = Array.from(reel.children);
-const controls = document.querySelector('.reel-controls');
-const count = document.querySelector('#reel-count');
-const current = () => Math.max(0, Math.min(slides.length-1, Math.round(reel.scrollLeft / reel.clientWidth)));
-function show(index, immediate = false) {
-  const next = (index + slides.length) % slides.length;
-  reel.scrollTo({left: next * reel.clientWidth, behavior: immediate || matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
-}
-function update() {
-  const index = current();
-  const label = String(index + 1).padStart(2, '0') + ' / ' + String(slides.length).padStart(2, '0');
-  if (count.textContent !== label) count.textContent = label;
-}
-controls.hidden = false;
-controls.querySelectorAll('[data-step]').forEach(button => button.addEventListener('click', () => show(current() + Number(button.dataset.step))));
-reel.addEventListener('scroll', update, {passive: true});
-reel.addEventListener('keydown', event => {
-  if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
-  event.preventDefault();
-  show(current() + (event.key === 'ArrowLeft' ? -1 : 1), true);
-});
-window.addEventListener('resize', update);
-update();
+(() => {
+  const reel = document.querySelector('#hero-reel');
+  const controls = document.querySelector('.hero-dot-controls');
+  const area = reel?.closest('.hero-carousel');
+  if (!reel || !controls || !area) return;
+  const slides = [...reel.children];
+  const dots = [...controls.querySelectorAll('[data-hero-dot]')];
+  if (slides.length !== dots.length || slides.length < 2) return;
+  const motion = matchMedia('(prefers-reduced-motion: reduce)');
+  const interval = 6500;
+  let active = 0, visible = false, hovered = false, interacting = false, timer;
+  const current = () => Math.max(0, Math.min(slides.length-1, Math.round(reel.scrollLeft / reel.clientWidth)));
+  function sync() {
+    active = current();
+    dots.forEach((dot,n) => dot.setAttribute('aria-pressed',String(n===active)));
+  }
+  function paused() {
+    return motion.matches || !visible || hovered || interacting || area.contains(document.activeElement) || document.hidden;
+  }
+  function refresh() {
+    clearTimeout(timer);
+    if (paused()) return;
+    timer = setTimeout(() => {
+      if (!paused()) show((active+1)%slides.length,active===slides.length-1);
+      refresh();
+    },interval);
+  }
+  function show(index,immediate=false) {
+    const next = (index+slides.length)%slides.length;
+    reel.scrollTo({left:next*reel.clientWidth,behavior:immediate||motion.matches?'instant':'smooth'});
+  }
+  controls.hidden = false;
+  dots.forEach((dot,n)=>dot.addEventListener('click',()=>{show(n);refresh();}));
+  reel.addEventListener('scroll',()=>{sync();refresh();},{passive:true});
+  area.addEventListener('keydown',e=>{
+    if (!['ArrowLeft','ArrowRight'].includes(e.key)) return;
+    e.preventDefault();
+    const n=(active+(e.key==='ArrowLeft'?-1:1)+slides.length)%slides.length;
+    show(n,true);
+    dots[n].focus();
+    refresh();
+  });
+  area.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'){hovered=true;refresh();}});
+  area.addEventListener('pointerleave',()=>{hovered=false;refresh();});
+  reel.addEventListener('pointerdown',()=>{interacting=true;refresh();},{passive:true});
+  window.addEventListener('pointerup',()=>{interacting=false;refresh();},{passive:true});
+  window.addEventListener('pointercancel',()=>{interacting=false;refresh();},{passive:true});
+  area.addEventListener('focusin',refresh);
+  area.addEventListener('focusout',()=>queueMicrotask(refresh));
+  document.addEventListener('visibilitychange',refresh);
+  motion.addEventListener('change',refresh);
+  window.addEventListener('resize',()=>{show(active,true);sync();refresh();});
+  if('IntersectionObserver' in window){
+    const observer=new IntersectionObserver(([entry])=>{visible=entry.isIntersecting;refresh();},{threshold:.1});
+    observer.observe(reel);
+  }else{visible=true;refresh();}
+  sync();
+})();
 const menuToggle = document.querySelector('.nav-toggle');
 const menu = document.querySelector('#site-menu');
 function closeMenu() {
