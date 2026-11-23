@@ -5,7 +5,7 @@
 .runner-profile .profile-nickname{font-size:clamp(19px,2vw,28px);font-weight:700;margin:0 0 16px}
 .runner-profile .profile-summary{max-width:37ch;color:var(--muted);line-height:1.7}
 .runner-profile .profile-feature{border-top:1px solid var(--red);margin-top:26px;padding-top:14px;display:grid;gap:4px}
-.runner-profile .profile-feature b,.sub3-strip .sub3-time{font-variant-numeric:tabular-nums;font-weight:850;color:var(--red);letter-spacing:-.045em}
+.runner-profile .profile-feature b{font-variant-numeric:tabular-nums;font-weight:850;color:var(--red);letter-spacing:-.045em}
 .runner-profile .profile-feature b{font-size:clamp(37px,5.8vw,83px);line-height:1.06}
 .runner-profile .profile-feature span{font-size:16px;font-weight:700}
 .runner-profile .profile-figure{margin:0;display:grid;place-items:center;background:#f3f1ef}
@@ -20,24 +20,17 @@
 .runner-profile .profile-results b{color:var(--red);font-variant-numeric:tabular-nums}
 .runner-profile .profile-others{display:flex;align-items:baseline;flex-wrap:wrap;gap:10px 24px;margin-top:28px}
 .runner-profile .profile-others strong{margin-right:6px}
-.honors-page .sub3-strip{background:#f7f5f4}
-.sub3-strip .sub3-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));column-gap:20px;row-gap:20px;list-style:none;padding:0;margin:22px 0 0}
-.sub3-strip .sub3-grid li{border-top:2px solid var(--red);padding:15px 0;min-width:0;display:flex;flex-direction:column;gap:4px}
-.sub3-strip .sub3-grid h3{margin:0;font-size:20px}
-.sub3-strip .sub3-time{font-size:clamp(29px,3.7vw,51px);line-height:1.17}
-.sub3-strip .sub3-grid p{margin:0 0 6px;color:var(--muted)}
-.sub3-strip .sub3-grid a{align-self:flex-start}
 .brand-home .runner-profile-link{display:table;margin-top:14px;color:var(--red)}
-.honors-page .member-spotlight{border-top:1px solid var(--rule);scroll-margin-top:24px}
+.honors-page .outstanding-runners{background:#f7f5f3;scroll-margin-top:24px}
+.honors-page .outstanding-heading{padding-top:clamp(40px,7vw,98px)}
+.honors-page .outstanding-heading h2{margin:0}
+.honors-page .member-spotlight{border-top:1px solid var(--rule);scroll-margin-top:24px;padding-block:clamp(34px,5.5vw,78px)}
+.honors-page #grade-times.member-spotlight{border-top:0;padding-top:clamp(25px,3vw,45px)}
 .honors-page #spotlight-xu-ting{background:#fff}
-.honors-page .member-spotlight .section-head{align-items:baseline;gap:10px 24px;flex-wrap:wrap}
+.honors-page .member-spotlight .spotlight-heading{display:flex;align-items:baseline;justify-content:space-between;gap:4px 18px;flex-wrap:wrap;margin-bottom:12px}
+.honors-page .member-spotlight .spotlight-heading h3{margin:0}
 .honors-page .member-spotlight .grade-marks .spotlight-rank{font-size:clamp(19px,2.25vw,29px)}
 .honors-page .member-spotlight .spotlight-profile{color:var(--red);white-space:nowrap}
-.honors-page .member-spotlight .spotlight-note{line-height:1.65}
-.honors-page .member-spotlight .spotlight-note a{display:inline-block;margin-inline-start:.5em}
-.honors-page .grade-extra{margin-top:32px}
-.honors-page .grade-extra h3{font-size:clamp(24px,2.4vw,34px);margin:0 0 8px}
-.honors-page .grade-extra h3 small{font-size:.5em;color:var(--muted)}
 @media(min-width:761px) and (prefers-reduced-motion:no-preference){
   .runner-profile .profile-layout{animation:runner-hero-entry 420ms ease-out both}
   @keyframes runner-hero-entry{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
