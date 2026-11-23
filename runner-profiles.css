@@ -35,6 +35,9 @@
 .honors-page .member-spotlight .spotlight-profile{color:var(--red);white-space:nowrap}
 .honors-page .member-spotlight .spotlight-note{line-height:1.65}
 .honors-page .member-spotlight .spotlight-note a{display:inline-block;margin-inline-start:.5em}
+.honors-page .grade-extra{margin-top:32px}
+.honors-page .grade-extra h3{font-size:clamp(24px,2.4vw,34px);margin:0 0 8px}
+.honors-page .grade-extra h3 small{font-size:.5em;color:var(--muted)}
 @media(min-width:761px) and (prefers-reduced-motion:no-preference){
   .runner-profile .profile-layout{animation:runner-hero-entry 420ms ease-out both}
   @keyframes runner-hero-entry{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
