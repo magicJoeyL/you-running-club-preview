@@ -343,6 +343,7 @@
 .honors-page .grade-marks{list-style:none;padding:0;margin:0}
 .honors-page .grade-marks li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3px 14px;align-items:center;border-top:1px solid var(--rule);padding:12px 0}
 .honors-page .grade-marks li div{display:grid;gap:3px}
+.honors-page .grade-marks li .grade-sources{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:3px 16px}
 .honors-page .grade-marks li span{color:var(--muted);font-size:13px;line-height:1.6}
 .honors-page .grade-marks li b{font-size:clamp(23px,3.25vw,42px);font-variant-numeric:tabular-nums;line-height:1.1;color:var(--red)}
 .honors-page .grade-marks li a,.honors-page .grade-note a{min-height:24px;color:var(--red)}
