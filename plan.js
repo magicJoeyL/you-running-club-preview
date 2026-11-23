@@ -8,6 +8,12 @@
   const names = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"];
   const types = ["恢复跑", "轻松跑", "质量课", "恢复跑", "轻松跑", "休息", "长距离"];
   const venues = { 2: "合练 · 宝安体育场", 6: "合练 · 大沙河" };
+  const weeklyMotivation = [
+    "先把这一圈跑稳，再去追下一圈。",
+    "跑好每一公里，比赛就多一分底气。",
+    "慢下来，是为了下一程跑得更稳。",
+    "长距离没有捷径，把眼前这一公里跑好。"
+  ];
   const dayMS = 86_400_000;
   const start = Date.UTC(2026, 10, 16);
   const firstWeek = 2;
@@ -55,6 +61,7 @@
     const wed = week === 0 ? "转段休 5 分钟；组间休 3 分钟。" : week === 3 ? "连续提速。" : "连续跑。";
     return {
       number: week + firstWeek, group: letters[group], goal: goals[group], range: weekDate(week), km: p.km,
+      quote: weeklyMotivation[week] || "跑好今天这一步。",
       days: p.days.map((raw, i) => ({
         i, raw, ...dayDate(week * 7 + i), name: names[i], type: types[i], venue: venues[i],
         parts: readWorkout(raw), note: i === 2 ? wed : "", rest: raw === "休息"
@@ -82,6 +89,7 @@
     weeks.forEach((button, i) => button.setAttribute("aria-pressed", String(i === week)));
     $("total").innerHTML = `<div class="training-score-top"><strong>${p.group} 组 / W${p.number}</strong><span>${p.range}</span></div><div class="training-score-body"><b class="training-score-number">${p.km}<small> km</small></b><span class="training-score-label">周跑量</span></div>`;
     $("program-context").textContent = `${p.group} 组 · W${p.number} · ${p.range}`;
+    $("training-quote").textContent = p.quote;
     const today = localDay();
     const visible = view === "today" ? p.days.filter(d => week * 7 + d.i === today) : p.days;
     $("days").innerHTML = visible.map(d => `<li class="training-day${d.venue ? " is-key" : ""}" data-day="${d.i}">
@@ -126,7 +134,7 @@
     const canvas = document.createElement("canvas");
     canvas.width = 1080; canvas.height = 1440;
     const c = canvas.getContext("2d");
-    const red = "#c8102e", ink = "#161616", muted = "#564e4c", line = "#e5ddd9", wash = "#f8f3f0";
+    const red = "#c8102e", ink = "#111111", muted = "#484848", line = "#dedede", wash = "#f5f5f5";
     const font = '"Microsoft YaHei","PingFang SC","Noto Sans CJK SC","Noto Sans SC",sans-serif';
     const text = (value, x, y, size, color = ink, weight = 600, maxWidth) => {
       c.fillStyle = color;
@@ -136,7 +144,7 @@
     };
     const fill = (x, y, w, h, color) => { c.fillStyle = color; c.fillRect(x, y, w, h); };
     const rule = (x, y, w, color = line) => fill(x, y, w, 2, color);
-    fill(0, 0, 1080, 1440, "#fdfbfa");
+    fill(0, 0, 1080, 1440, "#fff");
     fill(0, 0, 1080, 10, red);
     c.textBaseline = "alphabetic";
     if (withLogo && $("plan-logo").naturalWidth) {
@@ -195,7 +203,9 @@
       y += height;
       rule(56, y - 2, 968);
     }
-    text("周三另加 3 公里热身、2 公里放松；组间静止或步行。", 56, 1347, 23, muted, 550, 968);
+    fill(56, 1298, 5, 27, red);
+    text(p.quote, 73, 1320, 26, ink, 800, 940);
+    text("周三另加 3 公里热身、2 公里放松；组间静止或步行。", 56, 1357, 23, muted, 550, 968);
     rule(56, 1374, 968, ink);
     text("BE A BETTER YOU", 56, 1410, 23, ink, 800);
     c.textAlign = "right";
