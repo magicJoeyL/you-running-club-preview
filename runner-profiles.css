@@ -1,0 +1,42 @@
+.runner-profile .profile-hero{padding-block:clamp(36px,6vw,90px);border-bottom:1px solid var(--rule)}
+.runner-profile .profile-breadcrumb{margin-bottom:clamp(24px,4vw,56px)}
+.runner-profile .profile-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:clamp(22px,5vw,74px)}
+.runner-profile .profile-hero h1{font-size:clamp(52px,8.5vw,125px);letter-spacing:-.065em;line-height:1.04;margin:.16em 0}
+.runner-profile .profile-nickname{font-size:clamp(19px,2vw,28px);font-weight:700;margin:0 0 16px}
+.runner-profile .profile-summary{max-width:37ch;color:var(--muted);line-height:1.7}
+.runner-profile .profile-feature{border-top:1px solid var(--red);margin-top:26px;padding-top:14px;display:grid;gap:4px}
+.runner-profile .profile-feature b,.sub3-strip .sub3-time{font-variant-numeric:tabular-nums;font-weight:850;color:var(--red);letter-spacing:-.045em}
+.runner-profile .profile-feature b{font-size:clamp(37px,5.8vw,83px);line-height:1.06}
+.runner-profile .profile-feature span{font-size:16px;font-weight:700}
+.runner-profile .profile-figure{margin:0;display:grid;place-items:center;background:#f3f1ef}
+.runner-profile .profile-figure img{display:block;width:100%;height:clamp(360px,44vw,592px);object-fit:contain;object-position:center}
+.runner-profile .profile-figure.is-landscape img{height:auto}
+.runner-profile .profile-detail{background:#f7f5f4;padding-block:clamp(24px,4vw,46px)}
+.runner-profile .profile-detail p{max-width:75ch;margin-block:0 12px;line-height:1.7}
+.runner-profile .profile-detail-links{display:flex;flex-wrap:wrap;gap:8px 22px;color:var(--red)}
+.runner-profile .profile-results{list-style:none;margin:27px 0 0;padding:0}
+.runner-profile .profile-results li{display:grid;grid-template-columns:7ch minmax(0,1.5fr) minmax(0,1fr) auto;align-items:baseline;gap:10px 20px;border-top:1px solid var(--rule);padding:16px 0}
+.runner-profile .profile-results time{color:var(--muted);font-variant-numeric:tabular-nums}
+.runner-profile .profile-results b{color:var(--red);font-variant-numeric:tabular-nums}
+.runner-profile .profile-others{display:flex;align-items:baseline;flex-wrap:wrap;gap:10px 24px;margin-top:28px}
+.runner-profile .profile-others strong{margin-right:6px}
+.honors-page .sub3-strip{background:#f7f5f4}
+.sub3-strip .sub3-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));column-gap:20px;row-gap:20px;list-style:none;padding:0;margin:22px 0 0}
+.sub3-strip .sub3-grid li{border-top:2px solid var(--red);padding:15px 0;min-width:0;display:flex;flex-direction:column;gap:4px}
+.sub3-strip .sub3-grid h3{margin:0;font-size:20px}
+.sub3-strip .sub3-time{font-size:clamp(29px,3.7vw,51px);line-height:1.17}
+.sub3-strip .sub3-grid p{margin:0 0 6px;color:var(--muted)}
+.sub3-strip .sub3-grid a{align-self:flex-start}
+.brand-home .runner-profile-link{display:table;margin-top:14px;color:var(--red)}
+@media(min-width:761px) and (prefers-reduced-motion:no-preference){
+  .runner-profile .profile-layout{animation:runner-hero-entry 420ms ease-out both}
+  @keyframes runner-hero-entry{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+}
+@media(max-width:760px){
+  .runner-profile .profile-layout{grid-template-columns:1fr}
+  .runner-profile .profile-figure img{height:auto;max-height:430px}
+  .runner-profile .profile-results li{grid-template-columns:minmax(0,1fr) auto;gap:4px 10px}
+  .runner-profile .profile-results strong{grid-column:1/-1;grid-row:2}
+  .runner-profile .profile-results b{grid-row:3}
+  .runner-profile .profile-results a{grid-column:2;grid-row:3}
+}
