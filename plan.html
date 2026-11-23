@@ -1,10 +1,75 @@
 <!DOCTYPE html>
 
-<html lang="zh-CN"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="深圳YOU跑团冬训官网与首期训练课表" name="description"/><title>训练主场 - 课表 | YOU跑团</title><link href="club.css" rel="stylesheet"/><meta content="noindex,nofollow" name="robots"/></head><body><a class="skip" href="#main">跳至内容</a><header id="top"><nav class="wrap"><a aria-label="YOU跑团首页" href="index.html"><img alt="YOU跑团" src="assets/logo.png"/></a><div class="links"><a href="index.html#about">跑团介绍</a><a href="index.html#join">加入跑团</a><a class="cta" href="plan.html">查看课表</a></div></nav></header><main class="wrap plan" id="main"><h1>冬训课表</h1><div aria-label="选择组别" class="select" id="groups"><button class="active" type="button">A组</button><button class="" type="button">B组</button><button class="" type="button">C组</button><button class="" type="button">D组</button></div><div aria-label="选择周次" class="select" id="weeks"><button class="active" type="button">W2</button><button class="" type="button">W3</button><button class="" type="button">W4</button><button class="" type="button">W5</button></div><div class="view"><button id="today" type="button">当天训练</button><button class="active" id="all" type="button">整周课表</button></div><div class="total" id="total"><span>11.16 至 11.22<br/>A组 W2</span><b>92 km</b></div><div id="days"><div class="day"><span>周一<small>恢复跑</small></span><div><strong>12@5:05</strong></div></div><div class="day"><span>周二<small>轻松跑</small></span><div><strong>13@4:45</strong></div></div><div class="day key"><span>周三<small>质量课</small></span><div><strong>4@3:57 ＋ 4×2@3:45</strong><p>转段休5分钟，组间休3分钟</p></div></div><div class="day"><span>周四<small>恢复跑</small></span><div><strong>10@5:05</strong></div></div><div class="day"><span>周五<small>轻松跑</small></span><div><strong>12@4:45</strong></div></div><div class="day"><span>周六<small>休息</small></span><div><strong>休息</strong></div></div><div class="day key"><span>周日<small>长距离</small></span><div><strong>28@4:45</strong></div></div></div><p class="sub" style="margin-top:16px">距离单位公里，配速分／公里。周三另加3公里热身、2公里放松，组间静止或步行。</p><section class="actions" id="tools"><h2>课表图片与训练课程导入</h2><article><button class="cta" id="download">下载课表图片</button></article>
-<div aria-labelledby="device-import-title" class="device-import" id="import">
-<h3 id="device-import-title">训练课程导入</h3>
-<dl>
+<html data-type="place" lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="深圳 YOU 跑团冬训课表。选组和周次，查看每日距离、配速与组间休息，下载本周训练卡。" name="description"/>
+<meta content="#c8102e" name="theme-color"/>
+<title>冬训课表 | YOU跑团</title>
+<link href="assets/logo.png" rel="icon"/>
+<link href="club.css" rel="stylesheet"/>
+<link href="plan.css?v=20261123-card" rel="stylesheet"/>
+<script defer="" src="data.js"></script>
+<script defer="" src="plan.js?v=20261123-card"></script>
+<meta content="noindex,nofollow" name="robots"/></head>
+<body class="training-page">
+<a class="skip" href="#main">跳至课表</a>
+<header id="top">
+<nav aria-label="主导航" class="wrap training-nav">
+<a aria-label="YOU跑团首页" href="index.html"><img alt="YOU跑团" height="176" id="plan-logo" src="assets/logo.png" width="356"/></a>
+<a class="training-home" href="index.html">← 跑团首页</a>
+</nav>
+</header>
+<main class="wrap training-wrap" id="main">
+<section aria-labelledby="training-title" class="training-hero" data-enter="">
+<div class="training-copy">
+<p class="training-kicker">YOU RUNNING CLUB <span>/</span> 2026–27</p>
+<h1 id="training-title">冬训课表<span aria-hidden="true">.</span></h1>
+<p class="training-meetup"><span>周三 · 宝安体育场</span><span>周日 · 大沙河</span></p>
+</div>
+<div aria-live="polite" class="training-score" id="total"></div>
+</section>
+<section aria-label="选择训练课表" class="training-picker">
+<div class="training-control">
+<p class="training-control-label"><strong>训练组别</strong><span>全马目标</span></p>
+<div aria-label="选择组别" class="training-options training-groups" id="groups" role="group"></div>
+</div>
+<div class="training-control">
+<p class="training-control-label"><strong>训练周次</strong></p>
+<div aria-label="选择周次" class="training-options training-weeks" id="weeks" role="group"></div>
+</div>
+</section>
+<section aria-labelledby="program-title" class="training-program">
+<div class="training-toolbar">
+<div><h2 id="program-title">训练安排</h2><p id="program-context"></p></div>
+<div class="training-actions">
+<div aria-label="查看范围" class="training-view" role="group">
+<button aria-pressed="true" id="all" type="button">整周</button>
+<button aria-pressed="false" id="today" type="button">今日</button>
+</div>
+<button class="cta training-download" id="download" type="button">
+<svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"></path></svg>
+            下载周课表
+          </button>
+</div>
+</div>
+<p class="training-status" hidden="" id="training-status" role="status"></p>
+<div aria-hidden="true" class="training-table-head"><span>日期</span><span>课型</span><span>训练内容 <small>配速单位：分 / 公里</small></span></div>
+<ol aria-label="每日训练" class="training-days" id="days"></ol>
+<p class="training-footnote">周跑量含周三 3 公里热身和 2 公里放松；组间静止或步行。</p>
+<noscript><p>请开启 JavaScript 查看分组课表并下载图片。</p></noscript>
+</section>
+<section aria-labelledby="device-import-title" class="training-tools" id="tools">
+<div id="import">
+<h2 id="device-import-title">训练课程导入</h2>
+<dl class="training-devices">
 <div><dt>佳明中国</dt><dd>独立导入入口，待开放。</dd></div>
-<div><dt>高驰／华为／华米／颂拓</dt><dd>计划通过 RQ 提供，入口待开放。</dd></div>
+<div><dt>高驰 / 华为 / 华米 / 颂拓</dt><dd>RQ 导入入口，待开放。</dd></div>
 </dl>
-</div></section></main><footer><div class="wrap foot"><img alt="YOU" src="assets/logo.png"/><span>深圳 YOU跑团</span><a href="index.html#top">返回首页</a></div></footer><script src="data.js"></script><script src="plan.js"></script></body></html>
+</div>
+</section>
+</main>
+<footer><div class="wrap foot"><span>深圳 YOU 跑团</span><a href="index.html">返回官网 ↗</a></div></footer>
+</body>
+</html>
