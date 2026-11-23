@@ -334,3 +334,18 @@
 .honors-page .honor-reads span:first-child{font-size:12px;color:var(--red)}
 .honors-page .honor-reads a:hover b{text-decoration:underline;text-underline-offset:4px}
 @media(max-width:760px){.brand-home .runner-photo{aspect-ratio:4/4.2}.honors-page .honor-reads a{grid-template-columns:minmax(0,1fr) auto;gap:4px 10px}.honors-page .honor-reads span:first-child{grid-column:1/-1}}
+/* Race time benchmark, separate from title conferral. */
+.honors-page .grade-feature{display:grid;grid-template-columns:minmax(0,.68fr) minmax(0,1.32fr);gap:clamp(22px,4vw,60px);align-items:center}
+.honors-page .grade-photo{background:#edeae6;display:grid;place-items:center}
+.honors-page .grade-photo img{display:block;width:100%;height:auto;max-height:490px;object-fit:contain}
+.honors-page .grade-feature h3{font-size:clamp(28px,3.3vw,45px);margin:0 0 10px;line-height:1.25}
+.honors-page .grade-feature h3 small{font-size:.44em;color:var(--muted)}
+.honors-page .grade-marks{list-style:none;padding:0;margin:0}
+.honors-page .grade-marks li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3px 14px;align-items:center;border-top:1px solid var(--rule);padding:12px 0}
+.honors-page .grade-marks li div{display:grid;gap:3px}
+.honors-page .grade-marks li span{color:var(--muted);font-size:13px;line-height:1.6}
+.honors-page .grade-marks li b{font-size:clamp(23px,3.25vw,42px);font-variant-numeric:tabular-nums;line-height:1.1;color:var(--red)}
+.honors-page .grade-marks li a,.honors-page .grade-note a{min-height:24px;color:var(--red)}
+.honors-page .grade-note{margin-top:22px}
+@media(max-width:760px){.honors-page .grade-feature{grid-template-columns:1fr}.honors-page .grade-photo img{max-height:360px}.honors-page .grade-marks li strong{font-size:14px}}
+@media(max-width:560px){.honors-page #grade-times .section-head{display:block}.honors-page #grade-times .section-head>span{display:block;margin-top:10px}}
