@@ -130,25 +130,27 @@
     render();
   };
 
-  function drawPoster(p, withLogo) {
+  function drawPoster(p, withPhotos) {
     const canvas = document.createElement("canvas");
     canvas.width = 1080; canvas.height = 1440;
     const c = canvas.getContext("2d");
     const red = "#c8102e", ink = "#111111", muted = "#484848", line = "#dedede", wash = "#f5f5f5";
-    const font = '"Microsoft YaHei","PingFang SC","Noto Sans CJK SC","Noto Sans SC",sans-serif';
+    const font = '"YOU Poster Body","Microsoft YaHei","PingFang SC","Noto Sans CJK SC",sans-serif';
     const text = (value, x, y, size, color = ink, weight = 600, maxWidth) => {
       c.fillStyle = color;
       c.font = `${weight} ${size}px ${font}`;
       if (maxWidth) c.fillText(value, x, y, maxWidth);
       else c.fillText(value, x, y);
     };
-    const athletic = (value, x, y, size, align = "left") => {
+    const athletic = (value, x, y, size, align = "left", color = "#fff") => {
       c.save();
-      c.fillStyle = "#fff";
+      c.fillStyle = color;
       c.font = `italic 800 ${size}px "YOU Poster Numerals","Arial Narrow",Impact,Arial,sans-serif`;
       c.textAlign = align;
+      const width = c.measureText(value).width;
       c.fillText(value, x, y);
       c.restore();
+      return width;
     };
     const title = () => {
       c.save();
@@ -165,10 +167,28 @@
     };
     const fill = (x, y, w, h, color) => { c.fillStyle = color; c.fillRect(x, y, w, h); };
     const rule = (x, y, w, color = line) => fill(x, y, w, 2, color);
+    const metric = (value, unit, x, y, size, color) => {
+      const width = athletic(value, x, y, size, "left", color);
+      text(unit, x + width + 9, y, Math.round(size * .55), color, 750);
+    };
+    function coverPhoto(img, x, y, w, h) {
+      const iw = img.naturalWidth, ih = img.naturalHeight;
+      const sw = Math.min(iw, ih * w / h), sh = sw * h / w;
+      const layer = document.createElement("canvas");
+      layer.width = Math.round(w / 3.15); layer.height = Math.round(h / 3.15);
+      const lc = layer.getContext("2d");
+      lc.imageSmoothingQuality = "high";
+      // Downsample then enlarge the decorative backdrop so the blur also works without Canvas filters.
+      lc.drawImage(img, (iw - sw) / 2, (ih - sh) * .49, sw, sh, 0, 0, layer.width, layer.height);
+      c.save();
+      c.imageSmoothingQuality = "medium";
+      c.drawImage(layer, x, y, w, h);
+      c.restore();
+    }
     fill(0, 0, 1080, 1440, "#fff");
     fill(0, 0, 1080, 10, red);
     c.textBaseline = "alphabetic";
-    if (withLogo && $("plan-logo").naturalWidth) {
+    if (withPhotos && $("plan-logo").naturalWidth) {
       const logo = $("plan-logo");
       const height = 68;
       c.drawImage(logo, 56, 32, height * logo.naturalWidth / logo.naturalHeight, height);
@@ -179,9 +199,17 @@
     text("深圳 YOU 跑团  /  2026–27 冬训", 1024, 79, 22, muted, 650);
     c.textAlign = "left";
 
-    fill(56, 127, 968, 257, red);
+    const hero = $("plan-team-photo");
+    fill(56, 127, 968, 257, ink);
+    if (withPhotos && hero.naturalWidth) coverPhoto(hero, 56, 127, 968, 257);
+    const shade = c.createLinearGradient(56, 0, 1024, 0);
+    shade.addColorStop(0, "rgba(0,0,0,.72)");
+    shade.addColorStop(.68, "rgba(0,0,0,.52)");
+    shade.addColorStop(1, "rgba(0,0,0,.34)");
+    fill(56, 127, 968, 257, shade);
+    fill(690, 151, 310, 208, "rgba(200,16,46,.94)");
     c.save();
-    c.beginPath(); c.rect(800, 127, 224, 257); c.clip();
+    c.beginPath(); c.rect(803, 151, 197, 208); c.clip();
     c.strokeStyle = "#ffffff36"; c.lineWidth = 2;
     for (let x = 814; x < 1230; x += 19) {
       c.beginPath(); c.moveTo(x, 127); c.lineTo(x - 160, 384); c.stroke();
@@ -192,11 +220,10 @@
     title();
     athletic(p.group, 84, 345, 49);
     text(`组  ·  全马目标 ${p.goal}`, 124, 339, 25, "#fff", 650);
-    fill(665, 193, 2, 130, "#ffffff73");
-    athletic(String(p.km), 922, 274, 112, "right");
-    athletic("KM", 989, 274, 38, "right");
+    athletic(String(p.km), 906, 274, 112, "right");
+    athletic("KM", 971, 274, 38, "right");
     c.textAlign = "right";
-    text("周跑量 · 含热身与放松", 985, 312, 23, "#fff", 600);
+    text("周跑量 · 含热身与放松", 971, 312, 23, "#fff", 650);
     c.textAlign = "left";
 
     text("日期", 74, 431, 22, muted, 750);
@@ -207,9 +234,9 @@
     for (const d of p.days) {
       const height = d.i === 2 ? 143 : 114;
       if (d.venue) { fill(56, y, 968, height, wash); fill(56, y, 6, height, red); }
-      text(d.name, 74, y + 45, 30, ink, 800);
-      text(d.short, 74, y + 80, 22, muted, 550);
-      text(d.type, 206, y + 45, 28, d.venue ? red : ink, 780);
+      text(d.name, 74, y + 45, 30, ink, 890);
+      athletic(d.short, 75, y + 81, 28, "left", muted);
+      text(d.type, 206, y + 45, 28, d.venue ? red : ink, 850);
       if (d.venue) text(d.i === 2 ? "宝安体育场" : "大沙河", 206, y + 79, 22, muted, 550);
       if (!d.parts.length) {
         text(d.rest ? "不安排跑步" : d.raw, 408, y + 57, 28, muted, 600, 585);
@@ -217,9 +244,9 @@
         const slot = 602 / d.parts.length;
         d.parts.forEach((part, i) => {
           const x = 408 + i * slot;
-          if (i) text("+", x - 31, y + 51, 25, muted, 650);
-          text(`${part.distance} km`, x, y + 48, 39, ink, 850, slot - 40);
-          text(`${part.pace} /km`, x, y + 86, 25, muted, 700);
+          if (i) athletic("+", x - 35, y + 50, 29, "left", muted);
+          metric(part.distance, "km", x, y + 49, 49, ink);
+          metric(part.pace, "/km", x, y + 87, 32, d.venue ? red : muted);
         });
       }
       if (d.note) text(d.note, 408, y + 121, 22, muted, 550, 590);
@@ -246,12 +273,17 @@
     download.disabled = true;
     setStatus();
     try {
+      const waits = [];
+      if ($("plan-team-photo").decode) waits.push($("plan-team-photo").decode());
+      if ($("plan-logo").decode) waits.push($("plan-logo").decode());
       if (document.fonts) {
-        await Promise.allSettled([
+        waits.push(
           document.fonts.load('900 85px "YOU Poster Title"', "冬训课表"),
-          document.fonts.load('italic 800 112px "YOU Poster Numerals"', "0123456789.ABCDKMW"),
-        ]);
+          document.fonts.load('italic 800 112px "YOU Poster Numerals"', "0123456789.:×+ABCDKMW"),
+          document.fonts.load('850 28px "YOU Poster Body"', "周三质量课训练内容"),
+        );
       }
+      await Promise.allSettled(waits);
       let blob;
       try { blob = await toPNG(drawPoster(p, true)); }
       catch { blob = await toPNG(drawPoster(p, false)); }

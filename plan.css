@@ -1,6 +1,7 @@
 /* YOU training desk: compact sports editorial, square cuts, one red accent. */
 @font-face{font-family:"YOU Poster Title";src:url("assets/plan-fonts/poster-title.woff2") format("woff2");font-weight:900;font-style:normal}
-@font-face{font-family:"YOU Poster Numerals";src:url("assets/plan-fonts/poster-numerals.woff2") format("woff2");font-weight:800;font-style:italic}
+@font-face{font-family:"YOU Poster Numerals";src:url("assets/plan-fonts/poster-numerals.woff2?v=20261123-team") format("woff2");font-weight:800;font-style:italic}
+@font-face{font-family:"YOU Poster Body";src:url("assets/plan-fonts/poster-body.woff2") format("woff2");font-weight:500 900;font-style:normal}
 .training-page{--paper:#fff;--white:#fff;--ink:#111;--rule:#dedede;--focus:#c8102e;--training-accent:#c8102e;--training-rule:var(--rule);--training-muted:#484848;--training-wash:#f5f5f5;background:var(--paper)}
 .training-page [hidden]{display:none}
 .training-page .wrap{max-width:1116px}
@@ -9,13 +10,15 @@
 .training-home,.training-kicker,.training-control-label,.training-table-head{font-size:13px;font-weight:750}
 .training-home:hover{color:var(--training-accent)}
 .training-wrap{padding-bottom:58px}
-.training-hero{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(300px,1fr);gap:38px;align-items:end;padding-block:40px 28px;border-bottom:1px solid var(--training-rule)}
-.training-kicker{margin:0 0 10px;letter-spacing:.11em;color:var(--training-muted)}
+.training-hero{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(300px,1fr);gap:38px;align-items:end;margin-top:22px;padding:34px 28px;position:relative;isolation:isolate;overflow:hidden;background:#151515;color:#fff}
+.training-hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 49%;filter:blur(3px);transform:scale(1.025);z-index:-2}
+.training-hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#000c 0%,#0009 62%,#0006 100%);pointer-events:none}
+.training-kicker{margin:0 0 10px;letter-spacing:.11em;color:#fff}
 .training-kicker span,.training-copy h1 span{color:var(--training-accent)}
 .training-copy h1{font-size:clamp(53px,8vw,105px);line-height:1;letter-spacing:-.065em}
-.training-meetup{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px;margin:18px 0 0;color:var(--training-muted)}
-.training-meetup span+span{border-inline-start:1px solid var(--training-rule);padding-inline-start:18px}
-.training-quote{margin:12px 0 0;border-inline-start:3px solid var(--training-accent);padding-inline-start:10px;font-size:clamp(13px,1.5vw,17px);font-weight:760;line-height:1.55;color:var(--ink)}
+.training-meetup{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px;margin:18px 0 0;color:#fff}
+.training-meetup span+span{border-inline-start:1px solid #ffffff75;padding-inline-start:18px}
+.training-quote{margin:12px 0 0;border-inline-start:3px solid var(--training-accent);padding-inline-start:10px;font-size:clamp(13px,1.5vw,17px);font-weight:760;line-height:1.55;color:#fff}
 .training-score{position:relative;display:grid;align-content:space-between;gap:10px;min-height:140px;background:var(--training-accent);color:#fff;padding:18px 21px;overflow:hidden}
 .training-score::after{content:"";position:absolute;inset:0 0 0 auto;width:82px;pointer-events:none;opacity:.19;background:repeating-linear-gradient(125deg,transparent 0 15px,#fff 16px 17px,transparent 18px 25px)}
 .training-score-top,.training-score-body{display:flex;align-items:center;justify-content:space-between;gap:12px;position:relative;z-index:1}
@@ -38,6 +41,8 @@
 .training-toolbar{display:flex;justify-content:space-between;gap:10px 16px;align-items:center;padding:19px 0 16px}
 .training-toolbar h2,.training-tools h2{font-size:clamp(25px,3vw,35px);letter-spacing:-.04em}
 .training-toolbar p{font-size:13px;color:var(--training-muted);margin:5px 0 0}
+.training-toolbar-meta{display:flex;align-items:baseline;flex-wrap:wrap;gap:0 12px}
+.training-toolbar-meta a{font-size:12px;color:var(--training-accent);font-weight:750;text-decoration:underline;text-underline-offset:3px}
 .training-actions,.training-view{display:flex;align-items:center}
 .training-actions{gap:8px}
 .training-view{border:1px solid var(--training-rule);padding:2px;background:#fff;flex-shrink:0}
@@ -67,6 +72,13 @@
 .training-day .training-note{font-size:13px;color:var(--training-muted);margin:6px 0 0;overflow-wrap:anywhere}
 .training-rest{color:var(--training-muted);font-size:15px}
 .training-footnote{font-size:12px;color:var(--training-muted);margin:14px 0 0}
+.training-glossary{margin-top:34px;border-top:2px solid var(--ink);padding-top:22px;scroll-margin-top:16px}
+.training-glossary h2{font-size:clamp(25px,3vw,35px);letter-spacing:-.04em}
+.training-glossary>p{font-size:14px;color:var(--training-muted);margin:8px 0 14px}
+.training-glossary dl{margin:0}
+.training-glossary dl>div{display:grid;grid-template-columns:106px minmax(0,1fr);gap:10px 16px;padding:12px 0;border-top:1px solid var(--training-rule);font-size:14px}
+.training-glossary dt{font-weight:800}
+.training-glossary dd{margin:0;color:var(--training-muted)}
 .training-tools{padding:25px 0 0;margin-top:35px;border-top:1px solid var(--training-rule)}
 .training-devices{display:grid;grid-template-columns:1fr 1fr;gap:14px 28px;margin-bottom:0;font-size:14px}
 .training-devices div{border-top:1px solid var(--training-rule);padding-top:10px}
@@ -76,7 +88,9 @@
 @media(prefers-reduced-motion:no-preference){.training-hero[data-enter]{animation:training-entry .36s ease both}@keyframes training-entry{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}}
 @media(max-width:760px){
   .training-nav{height:59px}.training-nav img{width:89px;height:43px}
-  .training-hero{grid-template-columns:1fr;gap:15px;padding-block:22px 16px}
+  .training-hero{grid-template-columns:1fr;gap:15px;margin-top:13px;padding:18px 12px 12px}
+  .training-hero-photo{object-position:center 52%}
+  .training-hero::after{background:linear-gradient(120deg,#000b,#0009)}
   .training-kicker{margin-bottom:8px;font-size:10px}
   .training-copy h1{font-size:clamp(43px,12vw,68px)}
   .training-meetup{margin-top:10px;font-size:12px;gap:6px 10px}
@@ -103,6 +117,7 @@
   .training-part .training-pace{font-size:13px}
   .training-part{gap:4px}
   .training-parts{gap:4px 6px}
+  .training-glossary dl>div{grid-template-columns:72px minmax(0,1fr);gap:10px}
   .training-devices{grid-template-columns:1fr}
 }
-@media print{.training-picker,.training-actions,.training-tools,.training-status{display:none}.training-day{break-inside:avoid}}
+@media print{.training-picker,.training-actions,.training-tools,.training-status,.training-toolbar-meta a{display:none}.training-day{break-inside:avoid}}
