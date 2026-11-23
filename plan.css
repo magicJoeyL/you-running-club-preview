@@ -1,4 +1,6 @@
 /* YOU training desk: compact sports editorial, square cuts, one red accent. */
+@font-face{font-family:"YOU Poster Title";src:url("assets/plan-fonts/poster-title.woff2") format("woff2");font-weight:900;font-style:normal}
+@font-face{font-family:"YOU Poster Numerals";src:url("assets/plan-fonts/poster-numerals.woff2") format("woff2");font-weight:800;font-style:italic}
 .training-page{--paper:#fff;--white:#fff;--ink:#111;--rule:#dedede;--focus:#c8102e;--training-accent:#c8102e;--training-rule:var(--rule);--training-muted:#484848;--training-wash:#f5f5f5;background:var(--paper)}
 .training-page [hidden]{display:none}
 .training-page .wrap{max-width:1116px}

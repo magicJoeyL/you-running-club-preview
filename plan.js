@@ -142,6 +142,27 @@
       if (maxWidth) c.fillText(value, x, y, maxWidth);
       else c.fillText(value, x, y);
     };
+    const athletic = (value, x, y, size, align = "left") => {
+      c.save();
+      c.fillStyle = "#fff";
+      c.font = `italic 800 ${size}px "YOU Poster Numerals","Arial Narrow",Impact,Arial,sans-serif`;
+      c.textAlign = align;
+      c.fillText(value, x, y);
+      c.restore();
+    };
+    const title = () => {
+      c.save();
+      // Shear the CJK wordmark, not the training data below it.
+      c.transform(.975, 0, -.17, 1, 82, 280);
+      c.fillStyle = "#fff";
+      c.font = `900 85px "YOU Poster Title",${font}`;
+      let x = 0;
+      for (const glyph of "冬训课表") {
+        c.fillText(glyph, x, 0);
+        x += c.measureText(glyph).width - 4;
+      }
+      c.restore();
+    };
     const fill = (x, y, w, h, color) => { c.fillStyle = color; c.fillRect(x, y, w, h); };
     const rule = (x, y, w, color = line) => fill(x, y, w, 2, color);
     fill(0, 0, 1080, 1440, "#fff");
@@ -166,13 +187,15 @@
       c.beginPath(); c.moveTo(x, 127); c.lineTo(x - 160, 384); c.stroke();
     }
     c.restore();
-    text(`W${p.number}  /  ${p.range}`, 82, 185, 33, "#fff", 750);
-    text("冬训课表", 80, 274, 78, "#fff", 900);
-    text(`${p.group} 组  ·  全马目标 ${p.goal}`, 85, 339, 28, "#fff", 650);
+    athletic(`W${p.number}`, 83, 188, 53);
+    text(`/  ${p.range}`, 161, 183, 27, "#fff", 750);
+    title();
+    athletic(p.group, 84, 345, 49);
+    text(`组  ·  全马目标 ${p.goal}`, 124, 339, 25, "#fff", 650);
     fill(665, 193, 2, 130, "#ffffff73");
+    athletic(String(p.km), 922, 274, 112, "right");
+    athletic("KM", 989, 274, 38, "right");
     c.textAlign = "right";
-    text(`${p.km}`, 917, 264, 83, "#fff", 900);
-    text("KM", 987, 264, 31, "#fff", 800);
     text("周跑量 · 含热身与放松", 985, 312, 23, "#fff", 600);
     c.textAlign = "left";
 
@@ -223,7 +246,12 @@
     download.disabled = true;
     setStatus();
     try {
-      await document.fonts?.ready;
+      if (document.fonts) {
+        await Promise.allSettled([
+          document.fonts.load('900 85px "YOU Poster Title"', "冬训课表"),
+          document.fonts.load('italic 800 112px "YOU Poster Numerals"', "0123456789.ABCDKMW"),
+        ]);
+      }
       let blob;
       try { blob = await toPNG(drawPoster(p, true)); }
       catch { blob = await toPNG(drawPoster(p, false)); }
