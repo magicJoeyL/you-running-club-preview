@@ -234,3 +234,46 @@
  .brand-home .contact-personal .contact-channel{display:flex;flex-direction:column;align-items:flex-start}
  .brand-home .contact-personal .contact-qr-link{align-self:center;margin-block:12px}
 }
+/* Club story, runner benefits and milestones */
+.brand-home .about-source{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:-8px;margin-bottom:14px;font-size:12px;line-height:1.8}
+.brand-home .about-source a{color:var(--muted);text-decoration:underline;text-underline-offset:3px}
+.brand-home .club-benefits,.brand-home .club-members{background:#fff;border-bottom:1px solid var(--rule)}
+.brand-home .club-benefits .section-head,.brand-home .club-honors .section-head,.brand-home .club-members .section-head{align-items:end;margin-bottom:36px}
+.brand-home .benefits-grid,.brand-home .members-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,76px);align-items:center}
+.brand-home .benefits-media{background:#f5f3f1;overflow:hidden}
+.brand-home .benefits-media img{width:100%;height:clamp(330px,36vw,480px);object-fit:cover;object-position:center 70%;display:block}
+.brand-home .benefits-lead,.brand-home .members-lead{font-size:clamp(19px,2.1vw,29px);font-weight:700;line-height:1.65;margin:0 0 24px}
+.brand-home .benefit-list{list-style:none;padding:0;margin:0}
+.brand-home .benefit-list li{border-top:1px solid var(--rule);display:grid;grid-template-columns:36px 1fr;gap:16px;padding:19px 0}
+.brand-home .benefit-list li>span{color:var(--red);font-weight:700;font-size:13px;line-height:2}
+.brand-home .benefit-list h3,.brand-home .athlete-types h3{margin:0 0 4px;font-size:21px;line-height:1.5}
+.brand-home .benefit-list p,.brand-home .athlete-types p,.brand-home .honor-records p:not(.eyebrow),.brand-home .honor-stat p{font-size:15px;line-height:1.8;color:var(--muted);margin:0}
+.brand-home .benefits-note{font-size:12px;color:var(--muted);line-height:1.7;margin:2px 0 0}
+.brand-home .club-honors{background:#f7f5f3}
+.brand-home .honors-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:40px;align-items:stretch}
+.brand-home .honors-photo{display:flex;align-items:center;background:#ece9e6}
+.brand-home .honors-photo img{display:block;width:100%;height:auto;object-fit:contain}
+.brand-home .honors-copy{display:grid;grid-template-rows:1fr 1fr}
+.brand-home .honor-stat{border-top:1px solid var(--red);padding:18px 4px 16px 0}
+.brand-home .honor-stat>span{font-size:13px;font-weight:700}
+.brand-home .honor-stat strong{display:block;font-weight:900;font-style:italic;font-size:clamp(50px,6.2vw,88px);line-height:1.08;letter-spacing:-.05em;color:var(--red);margin:9px 0}
+.brand-home .honor-stat strong small{font-size:.27em;font-style:normal;letter-spacing:0}
+.brand-home .honor-stat a,.brand-home .honor-records a{display:inline-flex;margin-top:10px;font-size:13px;font-weight:700;color:var(--red)}
+.brand-home .honor-records{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:36px}
+.brand-home .honor-records article{border-top:1px solid var(--rule);padding-top:20px}
+.brand-home .honor-records h3{font-size:clamp(21px,2vw,29px);margin:0 0 10px;line-height:1.35}
+.brand-home .members-photo img{display:block;width:100%;height:auto}
+.brand-home .athlete-types article{display:grid;grid-template-columns:94px 1fr;column-gap:12px;border-top:1px solid var(--rule);padding:17px 0}
+.brand-home .athlete-types article>span{grid-row:1/span 2;align-self:start;color:var(--red);font:700 12px/2 Arial,sans-serif;letter-spacing:.05em}
+.brand-home .athlete-types h3,.brand-home .athlete-types p{grid-column:2}
+.brand-home .members-note{display:flex;justify-content:space-between;gap:20px;align-items:center;border-top:1px solid var(--rule);margin-top:30px;padding-top:20px}
+.brand-home .members-note p{font-size:13px;color:var(--muted);line-height:1.65;margin:0}
+.brand-home .members-note a{flex-shrink:0}
+@media(max-width:1000px){.brand-home .honors-grid{gap:24px}.brand-home .honor-records{gap:24px}}
+@media(max-width:760px){.brand-home .benefits-grid,.brand-home .members-grid,.brand-home .honors-grid{grid-template-columns:1fr;gap:24px}.brand-home .benefits-media img{height:300px;object-position:center 73%}.brand-home .honors-copy{grid-template-rows:auto}.brand-home .honor-records{margin-top:22px}.brand-home .club-benefits .section-head,.brand-home .club-honors .section-head,.brand-home .club-members .section-head{align-items:start;flex-direction:column;gap:12px;margin-bottom:24px}.brand-home .members-note{align-items:start;flex-direction:column;gap:6px}}
+@media(max-width:560px){.brand-home .honor-records{grid-template-columns:1fr;gap:20px}.brand-home .benefit-list li{gap:6px;grid-template-columns:27px 1fr;padding:15px 0}.brand-home .athlete-types article{grid-template-columns:78px 1fr;gap:0 12px}.brand-home .athlete-types article>span{font-size:10px}.brand-home .benefit-list h3,.brand-home .athlete-types h3{font-size:19px}.brand-home .benefit-list p,.brand-home .athlete-types p,.brand-home .honor-stat p,.brand-home .honor-records p:not(.eyebrow){font-size:14px}.brand-home .honor-stat strong{font-size:60px}.brand-home .about-source{font-size:11px}}
+.brand-home .runner-story{border-top:1px solid var(--red);margin-top:32px;padding-top:18px;display:grid;grid-template-columns:minmax(0,.65fr) minmax(0,1.35fr) auto;align-items:center;gap:24px}
+.brand-home .runner-story .eyebrow{margin:0 0 8px}
+.brand-home .runner-story h3{font-size:21px;line-height:1.4;margin:0}
+.brand-home .runner-story>p{font-size:14px;color:var(--muted);line-height:1.8;margin:0}
+@media(max-width:760px){.brand-home .runner-story{grid-template-columns:1fr;gap:12px}.brand-home .runner-story .inline-link{justify-self:start}}
